@@ -20,7 +20,7 @@
     {{-- <link href="{{ asset('assets') }}/css/nucleo-svg.css" rel="stylesheet" /> --}}
     <!-- CSS Files -->
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
-    <script src="{{ asset('assets') }}/js/plugins/sweetalert2.js"></script>
+    {{-- <script src="{{ asset('assets') }}/js/plugins/sweetalert2.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="{{ asset('DataTables') }}/datatables.min.css" rel="stylesheet" />
     {{-- <link href="{{ asset('css') }}/mdb.min.css" rel="stylesheet" /> --}}
@@ -29,6 +29,8 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
+    {{-- <link rel="stylesheet" href="{{ asset('bootstrap-datetimepicker') }}/css/bootstrap-datetimepicker.min.css" type="text/css" media="all" />
+    <script type="text/javascript" src="{{ asset('bootstrap-datetimepicker') }}/js/bootstrap-datetimepicker.min.js"></script> --}}
     {{-- <link id="pagestyle" href="{{ asset('assets') }}/css/material-dashboard.css?v=2.1.2" rel="stylesheet" /> --}}
     <link href="{{ asset('assets') }}/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
 </head>
@@ -91,7 +93,7 @@
         <!-- Library for adding dinamically elements -->
         <script src="{{ asset('assets') }}/js/plugins/arrive.min.js"></script>
         <!--  Google Maps Plugin    -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+        {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
         <!-- Chartist JS -->
         <script src="{{ asset('assets') }}/js/plugins/chartist.min.js"></script>
         <!--  Notifications Plugin    -->
@@ -118,7 +120,7 @@
         <!-- Github buttons -->
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-        <script src="{{ asset('assets') }}/js/argon-dashboard.js"></script>
+        {{-- <script src="{{ asset('assets') }}/js/argon-dashboard.js"></script> --}}
         @if (session()->has('success'))
             <script>
                 Swal.fire(

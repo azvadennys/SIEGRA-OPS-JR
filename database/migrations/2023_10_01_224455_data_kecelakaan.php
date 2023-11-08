@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('data_kecelakaan', function (Blueprint $table) {
             $table->id();
+            $table->string('nopol', 10);
+            $table->foreign('nopol')
+                ->references('nopol')
+                ->on('data_kendaraan')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->string('asal_berkas');
             $table->string('instansi');
             $table->string('samsat');
@@ -28,9 +33,7 @@ return new class extends Migration
             $table->string('no_berkas');
             $table->string('status');
             $table->string('kasus_kecelakaan');
-            $table->bigInteger('nopol');
             $table->bigInteger('cedera');
-            $table->bigInteger('jenis_kendaraan');
             $table->bigInteger('tgl_kejadian');
             $table->bigInteger('nominal_santunan');
             $table->bigInteger('tgl_pembayaran');

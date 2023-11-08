@@ -16,8 +16,8 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item {{ Route::currentRouteName()== 'kendaraan' ? 'active' : '' }} ">
-                <a class="nav-link" href="{{ route('kecelakaan') }}">
+            <li class="nav-item {{ (Request::is('kendaraan/*') || Request::is('kendaraan') ? 'active' : '')}} ">
+                <a class="nav-link" href="{{ route('kendaraan') }}">
                     <i class="material-icons">airport_shuttle</i>
                     <p>Data Kendaraan</p>
                 </a>

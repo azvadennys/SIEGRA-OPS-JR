@@ -52,47 +52,49 @@
                                         </datalist>
                                     </div>
                                     <div class="col-md-4 my-2">
-                                        <div class="form-group">
-                                            <label for="Pembuat" class="text-dark">Pembuat Laporan</label>
-                                            <select class="form-control" aria-label="Default select example" id="Pembuat"
-                                                name="Pembuat" required>
-                                                <option disabled selected>Pilih Pembuat Laporan</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
+                                        <label for="Pembuat" class="text-dark">Pembuat Laporan</label>
+                                        <select class="form-control" aria-label="Default select example" id="Pembuat"
+                                            name="Pembuat" required>
+                                            <option disabled selected>Pilih Pembuat Laporan</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4 my-2">
-                                        <div class="form-group">
-                                            <label for="Nama">Tanggal Laporan</label>
-                                            <input class="form-control" id="Nama" type="text" name="nama"
-                                                required>
-                                        </div>
+                                        <label for="Nama">Tanggal Laporan</label>
+                                        <input class="form-control" id="Nama" type="text" name="nama" required>
+                                    </div>
+                                    <div class="col-md-4 my-2">
+                                        <label for="Nama">No Laporan</label>
+                                        <input class="form-control" id="Nama" type="text" name="nama" required>
+                                    </div>
+                                    <div class="col-md-4 my-2">
+                                        <label for="Nama">Petugas</label>
+                                        <input class="form-control" id="Nama" type="text" name="nama" required>
+                                    </div>
+                                    <div class="col-md-4 my-2">
+                                        <label for="Nama">Nama Korban</label>
+                                        <input class="form-control" id="Nama" type="text" name="nama" required>
+                                    </div>
+                                    <div class="col-md-4 my-2">
+                                        <label for="date" class="form-control-label">Waktu
+                                            Kejadian</label>
+
+                                        <input class="form-control" type="datetime-local" id="date" name="umur"
+                                            required>
+
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="Nama">No Laporan</label>
-                                            <input class="form-control" id="Nama" type="text" name="nama"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="Nama">Nama Korban</label>
-                                            <input class="form-control" id="Nama" type="text" name="nama"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Umur</label>
                                             <input class="form-control" type="number" name="umur" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Jenis Kelamin</label>
+                                            <label for="example-text-input" class="form-control-label">Jenis
+                                                Kelamin</label>
                                             <select class="form-control" name="jenis_kelamin" id="exampleFormControlSelect1"
                                                 required>
                                                 <option value="" readonly>Pilih Jenis Kelamin</option>
@@ -101,14 +103,15 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">No LP</label>
+                                            <label for="example-text-input" class="form-control-label">No
+                                                Handphone</label>
                                             <input class="form-control" type="text" name="no_LP" required>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Lama
                                                 Rawatan</label>
@@ -162,11 +165,18 @@
 @push('custom_js')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> --}}
 
     <script>
         $(function() {
+            // $('#id_1').datetimepicker({
+            //     "allowInputToggle": true,
+            //     "showClose": true,
+            //     "showClear": true,
+            //     "showTodayButton": true,
+            //     "format": "MM/DD/YYYY HH:mm:ss",
+            // });
             $('input[name="lamarawat"]').daterangepicker({
                 opens: 'left'
             }, function(start, end, label) {

@@ -31,6 +31,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\DataKecelakaanControler;
+use App\Http\Controllers\DataKendaraanController;
 use App\Http\Controllers\korbanControler;
 use App\Http\Controllers\LaporanControler;
 use Telegram\Bot\Laravel\Facades\Telegram;
@@ -59,6 +60,15 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/kecelakaan/{id}/edit', 'edit')->name('kecelakaan.edit');
 		Route::post('/kecelakaan/{id}', 'update')->name('kecelakaan.update');
 		Route::delete('/kecelakaan/delete/{id}', 'destroy')->name('kecelakaan.destroy');
+	});
+	Route::controller(DataKendaraanController::class)->group(function () {
+		Route::get('/kendaraan', 'index')->name('kendaraan');
+		Route::get('/kendaraan/create', 'create')->name('kendaraan.create');
+		Route::post('/kendaraan/store', 'store')->name('kendaraan.store');
+		Route::get('/kendaraan/{id}/detail', 'show')->name('kendaraan.detail');
+		Route::get('/kendaraan/{id}/edit', 'edit')->name('kendaraan.edit');
+		Route::post('/kendaraan/{id}', 'update')->name('kendaraan.update');
+		Route::delete('/kendaraan/delete/{id}', 'destroy')->name('kendaraan.destroy');
 	});
 
 
