@@ -27,34 +27,40 @@
                                 <div class="row">
                                     <div class="col-md-4 my-2">
                                         <label for="Berkas" class="">Asal Berkas</label>
-                                        <input class="form-control" list="listBerkas" id="Berkas" name="Berkas"
-                                            placeholder="Masukkan Asal Berkas" required>
+                                        <input class="form-control" list="listBerkas" id="Berkas"
+                                            name="asal_berkas"required>
                                         <datalist id="listBerkas">
-                                            <option value="San Francisco">
+                                            @foreach ($asal_berkas as $index)
+                                                <option value="{{ $index }}">
+                                            @endforeach
+
                                         </datalist>
 
                                     </div>
                                     <div class="col-md-4 my-2">
-                                        <label for="Instansi" class="form-label">Instansi</label>
-                                        <input class="form-control" list="listInstansi" id="Instansi" name="Instansi"
-                                            placeholder="Masukkan Instansi" required>
+                                        <label for="instansi" class="form-label">Instansi</label>
+                                        <input class="form-control" list="listInstansi" id="instansi" name="instansi"
+                                            required>
                                         <datalist id="listInstansi">
-                                            <option value="San Francisco">
+                                            @foreach ($instansi as $index)
+                                                <option value="{{ $index }}">
+                                            @endforeach
                                         </datalist>
 
                                     </div>
                                     <div class="col-md-4 my-2">
-                                        <label for="Samsat" class="form-label">Samsat</label>
-                                        <input class="form-control" list="listSamsat" id="Samsat" name="Samsat"
-                                            placeholder="Masukkan Samsat" required>
+                                        <label for="samsat" class="form-label">Samsat</label>
+                                        <input class="form-control" list="listSamsat" id="samsat" name="samsat"
+                                            required>
                                         <datalist id="listSamsat">
-                                            <option value="San Francisco">
+                                            @foreach ($samsat as $index)
+                                                <option value="{{ $index }}">
+                                            @endforeach
                                         </datalist>
                                     </div>
                                     <div class="col-md-4 my-2">
                                         <label for="Pembuat" class="">Pembuat Laporan</label>
-                                        <select class="form-control" aria-label="Default select example" id="pembuat"
-                                            name="pembuat" required>
+                                        <select class="form-control"id="pembuat" name="pembuat_laporan" required>
                                             <option disabled selected>Pilih Pembuat Laporan</option>
                                             <option value="KEPOLISIAN">KEPOLISIAN</option>
                                             <option value="KEPOLISIAN (SELAIN SATLANTAS POLRES)">KEPOLISIAN (SELAIN
@@ -64,77 +70,109 @@
                                             <option value="POLSUSKA (KERETA API)">POLSUSKA (KERETA API)</option>
                                             <option value="BANDARA UDARA">BANDARA UDARA</option>
                                         </select>
+                                        @error('pembuat_laporan')
+                                            <p class="text-danger text-xs pt-1"> {{ $message }} </p>
+                                        @enderror
                                     </div>
                                     <div class="col-md-4 my-2">
-                                        <label for="Nama">Tanggal Laporan</label>
-                                        <input class="form-control" id="Nama" type="date" name="nama" required>
-                                    </div>
-                                    <div class="col-md-4 my-2">
-                                        <label for="Nama">No Laporan</label>
-                                        <input class="form-control" id="Nama" type="text" name="nama" required>
-                                    </div>
-                                    <div class="col-md-4 my-2">
-                                        <label for="Nama">Petugas</label>
-                                        <input class="form-control" id="Nama" type="text" name="nama" required>
-                                    </div>
-                                    <div class="col-md-4 my-2">
-                                        <label for="Nama">Nama Korban</label>
-                                        <input class="form-control" id="Nama" type="text" name="nama" required>
-                                    </div>
-                                    <div class="col-md-4 my-2">
-                                        <label for="date" class="form-control-label">Waktu
-                                            Kejadian</label>
-
-                                        <input class="form-control" type="datetime-local" id="date" name="umur"
+                                        <label for="tgl_laporan">Tanggal Laporan</label>
+                                        <input class="form-control" id="tgl_laporan" type="date" name="tgl_laporan"
                                             required>
+                                    </div>
+                                    <div class="col-md-4 my-2">
+                                        <label for="no_laporan">No Laporan</label>
+                                        <input class="form-control" id="no_laporan" type="text" name="no_laporan"
+                                            required>
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <label for="petugas">Petugas</label>
+                                        <input class="form-control" id="petugas" type="text" name="petugas" required>
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <div class="form-group">
+                                            <label for="nopol" class="form-control-label">Nomor Kendaraan</label>
+                                            <select class="form-control " name="nopol" id="nopol">
+                                                <option disabled selected>Pilih Nomor Kendaraan</option>
+                                                @foreach ($kendaraan as $index)
+                                                    <option value="{{ $index->nopol }}">{{ $index->nopol }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('nopol')
+                                                <p class="text-danger text-xs pt-1"> {{ $message }} </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <label for="nama_korban">Nama Korban</label>
+                                        <input class="form-control" id="nama_korban" type="text" name="nama_korban"
+                                            required>
+                                    </div>
+                                    <div class="col-md-6 my-2">
+                                        <label for="tgl_kejadian" class="form-control-label">Waktu
+                                            Kejadian</label>
+                                        <input class="form-control" type="datetime-local" id="tgl_kejadian"
+                                            name="tgl_kejadian" required>
 
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 my-2">
                                         <div class="form-group">
                                             <label for="alamat_tkp" class="form-control-label">Alamat TKP</label>
-                                            <textarea class="form-control" name="alamat_tkp" id="alamat_tkp" cols="30" rows="2"></textarea>
+                                            <textarea class="form-control" name="alamat_tkp" id="alamat_tkp" cols="30" rows="2" required></textarea>
                                             {{-- <input class="form-control" type="number" name="umur" required> --}}
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-8 my-2">
                                         <div class="form-group">
                                             <label for="kel_tkp" class="form-control-label">Kelurahan, Kecamatan &
                                                 Kab/Kota</label>
-                                            <select class="form-control kel_tkp" name="kel_tkp" id="kel_tkp">
+                                            <select class="form-control" name="kel_tkp" id="kel_tkp">
+                                                <option disabled selected>Pilih Kelurahan, Kecamatan &
+                                                    Kab/Kota</option>
                                                 @foreach ($kelurahan as $index)
                                                     <option value="{{ $index->id }}">KEL. {{ $index->name }}, KEC.
                                                         {{ $index->district->name }}, {{ $index->district->regency->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            @error('kel_tkp')
+                                                <p class="text-danger text-xs pt-1"> {{ $message }} </p>
+                                            @enderror
 
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 my-2">
                                         <div class="form-group">
                                             <label for="alamat_korban" class="form-control-label">Alamat Korban</label>
-                                            <textarea class="form-control" name="alamat_korban" id="alamat_korban" cols="30" rows="2"></textarea>
-                                            {{-- <input class="form-control" type="number" name="umur" required> --}}
+                                            <textarea class="form-control" name="alamat_korban" id="alamat_korban" cols="30" rows="2" required></textarea>
+
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-8 my-2">
                                         <div class="form-group">
                                             <label for="kel_korban" class="form-control-label">Kelurahan, Kecamatan &
                                                 Kab/Kota</label>
                                             <select class="form-control kel_korban" name="kel_korban" id="kel_korban">
+                                                <option disabled selected>Pilih Kelurahan, Kecamatan &
+                                                    Kab/Kota</option>
                                                 @foreach ($kelurahan as $index)
                                                     <option value="{{ $index->id }}">KEL. {{ $index->name }}, KEC.
-                                                        {{ $index->district->name }}, {{ $index->district->regency->name }}
+                                                        {{ $index->district->name }},
+                                                        {{ $index->district->regency->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            @error('kel_korban')
+                                                <p class="text-danger text-xs pt-1"> {{ $message }} </p>
+                                            @enderror
+
 
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 my-2">
                                         <div class="form-group">
                                             <label for="Laka" class="form-control-label">Kasus Laka</label>
-                                            <select class="form-control" name="Laka" id="Laka">
+                                            <select class="form-control" name="kasus_laka" id="Laka">
+                                                <option disabled selected>Pilih Kasus Laka</option>
                                                 <option value="001 - TABRAKAN DEPAN - DEPAN">001 - TABRAKAN DEPAN - DEPAN
                                                 </option>
                                                 <option value="002 - TABRAKAN DEPAN - SAMPING">002 - TABRAKAN DEPAN -
@@ -153,49 +191,60 @@
                                                     PEJALAN KAKI/SEJENISNYA</option>
 
                                             </select>
+                                            @error('kasus_laka')
+                                                <p class="text-danger text-xs pt-1"> {{ $message }} </p>
+                                            @enderror
 
                                         </div>
                                     </div>
-                                  
-                                    <div class="col-md-4">
+
+                                    <div class="col-md-4 my-2">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Uraian
+                                            <label for="uraian_singkat" class="form-control-label">Uraian
                                                 Singkat</label>
-                                            <input class="form-control" type="text" name="no_LP" required>
+                                            <input class="form-control" type="text" id="uraian_singkat"
+                                                name="uraian_singkat" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 my-2">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">No
+                                            <label for="no_hp" class="form-control-label">No
                                                 Handphone</label>
-                                            <input class="form-control" type="text" name="no_LP" required>
+                                            <input class="form-control" type="tel" id="no_hp" name="no_hp"
+                                                minlength="11" aria-describedby="no_hpHelp" required>
+                                            <small id="no_hpHelp" class="form-text text-muted">* Contoh
+                                                6285320197002</small>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 my-2">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Status</label>
-                                            <input class="form-control" type="text" name="no_LP" required>
+                                            <label for="status" class="form-control-label">Status</label>
+                                            <input class="form-control" type="text" id="status" name="status"
+                                                required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 my-2">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Cidera</label>
-                                            <input class="form-control" type="text" name="no_LP" required>
+                                            <label for="cidera" class="form-control-label">Cidera</label>
+                                            <input class="form-control" type="text" id="cidera" name="cidera"
+                                                required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 my-2">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Nominal
+                                            <label for="nominal_santunan" class="form-control-label">Nominal
                                                 Santunan</label>
-                                            <input class="form-control" type="text" name="no_LP" required>
+                                            <input class="form-control" type="number" id="nominal_santunan"
+                                                name="nominal_santunan" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 my-2">
                                         <div class="form-group">
                                             <label for="Pelanggaran" class="form-control-label">Kesimpulan
                                                 Pelanggaran</label>
-                                            <select class="form-control" id="Pelanggaran" name="Pelanggaran[]"
+                                            <select class="form-control" id="Pelanggaran" name="pelanggaran[]"
                                                 multiple="multiple">
+                                                <option value="0">Tidak Ada</option>
                                                 <option value="1">1. Melawan arus lalu lintas
                                                 </option>
                                                 <option value="2">2. Mengemudikan Kendaraan Bermotor tanpa Surat Izin
@@ -205,12 +254,14 @@
                                                     dimodifikasi dimensi,
                                                     mesin, atau kemampuan daya angkutnya dengan tata cara yang tidak
                                                     sesuai ketentuan Peraturan Perundang-undangan</option>
-                                                <option value="4">4. Menerobos palang pintu perlintasan kereta api, yaitu
+                                                <option value="4">4. Menerobos palang pintu perlintasan kereta api,
+                                                    yaitu
                                                     mengemudikan
                                                     Kendaraan Bermotor pada perlintasan antara kereta api dan Jalan yang
                                                     tidak berhenti ketika sinyal sudah berbunyi, palang pintu kereta api
                                                     sudah mulai ditutup, dan/atau ada isyarat lain</option>
-                                                <option value="5">5. Mengemudikan Kendaraan Bermotor dengan tidak wajar
+                                                <option value="5">5. Mengemudikan Kendaraan Bermotor dengan tidak
+                                                    wajar
                                                     dan/atau
                                                     melakukan kegiatan lain karena membuat konten yang dapat
                                                     membahayakan keamanan, keselamatan serta mengganggu ketertiban
@@ -221,11 +272,14 @@
 
                                             </select>
 
+                                            @error('pelanggaran')
+                                                <p class="text-danger text-xs pt-1"> {{ $message }} </p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-12 ">
                                     <button type="submit" class="btn bg-primary text-white">Simpan</button>
                                     <a href="{{ route('kecelakaan') }}" class="btn bg-info text-white">Kembali</a>
                                 </div>
@@ -243,6 +297,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> --}}
     {{-- <script>
@@ -265,6 +320,7 @@
             $('#pembuat').select2();
             $('#Laka').select2();
             $('#Pelanggaran').select2();
+            $('#nopol').select2();
             // $('input[name="lamarawat"]').daterangepicker({
             //     opens: 'left'
             // }, function(start, end, label) {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\data_kecelakaan;
+use App\Models\Data_Kendaraan;
 use App\Models\Village;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,10 @@ class DataKecelakaanControler extends Controller
             'kelurahan' => Village::with(['district', 'district.regency', 'district.regency.province'])->whereHas('district.regency.province', function ($query) {
                 $query->where('name', 'BENGKULU');
             })->get(),
+            'kendaraan' => Data_Kendaraan::all(),
+            'asal_berkas' => data_kecelakaan::distinct()->pluck('asal_berkas'),
+            'instansi' => data_kecelakaan::distinct()->pluck('asal_berkas'),
+            'samsat' => data_kecelakaan::distinct()->pluck('asal_berkas'),
         ];
         // dd($data['kelurahan']);
         return view('admin.korban.tambah', $data);

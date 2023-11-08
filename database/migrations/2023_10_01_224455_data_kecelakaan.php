@@ -26,17 +26,16 @@ return new class extends Migration
             $table->string('pembuat_laporan');
             $table->date('tgl_laporan');
             $table->string('no_laporan');
+            $table->string('petugas');
             $table->string('nama_korban');
-            $table->integer('umur');
-            $table->string('jenis_kelamin');
-            $table->string('no_hp');
-            $table->string('no_berkas');
-            $table->string('status');
-            $table->string('kasus_kecelakaan');
-            $table->string('cedera');
             $table->string('tgl_kejadian');
+            $table->string('kasus_laka');
+            $table->string('uraian_singkat');
+            $table->string('no_hp');
+            $table->string('status');
+            $table->string('cidera');
             $table->bigInteger('nominal_santunan');
-            $table->string('tgl_pembayaran');
+            $table->string('pelanggaran');
             $table->timestamps();
         });
     }

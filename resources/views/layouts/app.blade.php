@@ -29,7 +29,6 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     {{-- <link rel="stylesheet" href="{{ asset('bootstrap-datetimepicker') }}/css/bootstrap-datetimepicker.min.css" type="text/css" media="all" />
     <script type="text/javascript" src="{{ asset('bootstrap-datetimepicker') }}/js/bootstrap-datetimepicker.min.js"></script> --}}
     {{-- <link id="pagestyle" href="{{ asset('assets') }}/css/material-dashboard.css?v=2.1.2" rel="stylesheet" /> --}}
