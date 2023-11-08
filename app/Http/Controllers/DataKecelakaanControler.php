@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\data_kecelakaan;
+use App\Models\Village;
 use Illuminate\Http\Request;
 
 class DataKecelakaanControler extends Controller
@@ -31,7 +32,11 @@ class DataKecelakaanControler extends Controller
 
         $data = [
             'anggota' => data_kecelakaan::orderby('created_at', 'desc')->get(),
+            'kelurahan' => Village::with(['district', 'district.regency', 'district.regency.province'])->whereHas('district.regency.province', function ($query) {
+                $query->where('name', 'BENGKULU');
+            })->get(),
         ];
+        // dd($data['kelurahan']);
         return view('admin.korban.tambah', $data);
     }
 

@@ -24,19 +24,19 @@ return new class extends Migration
             $table->string('instansi');
             $table->string('samsat');
             $table->string('pembuat_laporan');
-            $table->string('tgl_laporan');
+            $table->date('tgl_laporan');
             $table->string('no_laporan');
             $table->string('nama_korban');
-            $table->string('umur');
+            $table->integer('umur');
             $table->string('jenis_kelamin');
             $table->string('no_hp');
             $table->string('no_berkas');
             $table->string('status');
             $table->string('kasus_kecelakaan');
-            $table->bigInteger('cedera');
-            $table->bigInteger('tgl_kejadian');
+            $table->string('cedera');
+            $table->string('tgl_kejadian');
             $table->bigInteger('nominal_santunan');
-            $table->bigInteger('tgl_pembayaran');
+            $table->string('tgl_pembayaran');
             $table->timestamps();
         });
     }
