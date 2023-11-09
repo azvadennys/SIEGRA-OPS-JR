@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\data_alamat;
 use App\Models\data_kecelakaan;
 use App\Models\Data_Kendaraan;
 use App\Models\Village;
@@ -32,7 +33,7 @@ class DataKecelakaanControler extends Controller
     {
 
         $data = [
-            'anggota' => data_kecelakaan::orderby('created_at', 'desc')->get(),
+            // 'anggota' => data_kecelakaan::orderby('created_at', 'desc')->get(),
             'kelurahan' => Village::with(['district', 'district.regency', 'district.regency.province'])->whereHas('district.regency.province', function ($query) {
                 $query->where('name', 'BENGKULU');
             })->get(),
@@ -53,9 +54,60 @@ class DataKecelakaanControler extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        $korban = $request->all();
-        korban::create($korban);
+        $validated = $request->validate(
+            [
+                'nopol' => 'required',
+                'pembuat_laporan' => 'required',
+                'kel_tkp' => 'required',
+                'kel_korban' => 'required',
+                'kasus_laka' => 'required',
+                'pelanggaran' => 'required',
+            ],
+            [
+                'nopol.required' => 'Nomor Polisi Harus Diisi',
+                'pembuat_laporan.required' => 'Pembuat Laporan Harus Diisi',
+                'kel_tkp.required' => 'Kelurahan, Kecamatan & Kab/Kota TKP Harus Diisi',
+                'kel_korban.required' => 'Kelurahan, Kecamatan & Kab/Kota Korban Harus Diisi',
+                'kasus_laka.required' => 'Kasus Laka Harus Diisi',
+                'pelanggaran.required' => 'Kesimpulan Pelanggaran Harus Diisi',
+            ]
+        );
+        // dd($request);
+        // $kecelakaan = $request->all();
+        $kecelakan_id = data_kecelakaan::create([
+            'nopol' => $request->nopol,
+            'asal_berkas' => $request->asal_berkas,
+            'instansi' => $request->instansi,
+            'samsat' => $request->samsat,
+            'pembuat_laporan' => $request->pembuat_laporan,
+            'tgl_laporan' => $request->tgl_laporan,
+            'no_laporan' => $request->no_laporan,
+            'petugas' => $request->petugas,
+            'nama_korban' => $request->nama_korban,
+            'tgl_kejadian' => $request->tgl_kejadian,
+            'kasus_laka' => $request->kasus_laka,
+            'uraian_singkat' => $request->uraian_singkat,
+            'no_hp' => $request->no_hp,
+            'status' => $request->status,
+            'cidera' => $request->cidera,
+            'nominal_santunan' => $request->nominal_santunan,
+            'pelanggaran' => json_encode($request->pelanggaran),
+        ])->id;
+
+        data_alamat::create([
+            'alamat' => $request->alamat_tkp,
+            'data_kecelakaan_id' => $kecelakan_id,
+            'villages_id' => $request->kel_tkp,
+            'jenis' => 'tkp',
+        ]);
+
+        data_alamat::create([
+            'alamat' => $request->alamat_korban,
+            'data_kecelakaan_id' => $kecelakan_id,
+            'villages_id' => $request->kel_korban,
+            'jenis' => 'korban',
+        ]);
+        // dd($kecelakan_id);
         // session()->flash('success', 'Data added successfully!');
         return redirect()->back()->with('success', 'Data berhasil ditambahkan');
     }
@@ -66,9 +118,20 @@ class DataKecelakaanControler extends Controller
      * @param  \App\Models\korban  $korban
      * @return \Illuminate\Http\Response
      */
-    public function show(korban $korban)
+    public function show(data_kecelakaan $data_kecelakaan, $id)
     {
-        //
+        $data = [
+            'data' => data_kecelakaan::with(['alamat_tkp', 'alamat_korban'])->where('id', $id)->first(),
+            'kelurahan' => Village::with(['district', 'district.regency', 'district.regency.province'])->whereHas('district.regency.province', function ($query) {
+                $query->where('name', 'BENGKULU');
+            })->get(),
+            'kendaraan' => Data_Kendaraan::all(),
+            'asal_berkas' => data_kecelakaan::distinct()->pluck('asal_berkas'),
+            'instansi' => data_kecelakaan::distinct()->pluck('asal_berkas'),
+            'samsat' => data_kecelakaan::distinct()->pluck('asal_berkas'),
+        ];
+        // dd($data['data']);
+        return view('admin.korban.detail', $data);
     }
 
     /**

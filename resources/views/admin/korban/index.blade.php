@@ -61,9 +61,9 @@
                                             {{-- <th scope="col">No</th> --}}
                                             <th class="text-center">No</th>
                                             <th scope="col">Nama Korban</th>
-                                            <th scope="col">Cedera</th>
+                                            <th scope="col">Cidera</th>
                                             <th scope="col">Santunan</th>
-                                            <th scope="col">Tanggal Pembayaran</th>
+                                            <th scope="col">Tanggal Kejadian</th>
                                             <th class="text-right pr-6" data-orderable="false">Action</th>
                                         </tr>
                                     </thead>
@@ -80,16 +80,16 @@
 
                                                 </td>
                                                 <td>
-                                                    {{ $index->nama }}
+                                                    {{ $index->nama_korban }}
                                                 </td>
                                                 <td>
-                                                    {{ $index->cedera }}
+                                                    {{ $index->cidera }}
                                                 </td>
                                                 <td>
                                                     <?php echo 'Rp ' . number_format($index->nominal_santunan, 0, ',', '.'); ?>
                                                 </td>
                                                 <td>
-                                                    {{ date('d F Y', strtotime($index->tgl_pembayaran)) }}
+                                                    {{ date('d F Y', strtotime($index->tgl_kejadian)) }}
                                                 </td>
 
                                                 <td>

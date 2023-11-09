@@ -30,23 +30,6 @@ return new class extends Migration
                 ->on('villages')
                 ->onUpdate('cascade')->onDelete('restrict');
 
-            $table->char('district_id', 7);
-            $table->foreign('district_id')
-                ->references('id')
-                ->on('districts')
-                ->onUpdate('cascade')->onDelete('restrict');
-
-            $table->char('regency_id', 4);
-            $table->foreign('regency_id')
-                ->references('id')
-                ->on('regencies')
-                ->onUpdate('cascade')->onDelete('restrict');
-
-            $table->char('province_id', 2);
-            $table->foreign('province_id')
-                ->references('id')
-                ->on('provinces')
-                ->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }
