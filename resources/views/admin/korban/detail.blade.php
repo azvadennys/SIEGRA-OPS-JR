@@ -289,7 +289,7 @@
                                         <label for="Pelanggaran" class="form-control-label">Kesimpulan
                                             Pelanggaran</label>
                                         <select class="form-control" id="Pelanggaran" name="pelanggaran[]"
-                                            multiple="multiple">
+                                            multiple="multiple" disabled>
                                             <option value="0"
                                                 {{ in_array('0', old('pelanggaran', json_decode($data->pelanggaran)) ?? []) ? 'selected' : '' }}>
                                                 Tidak Ada</option>
