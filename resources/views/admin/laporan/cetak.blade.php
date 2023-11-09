@@ -69,8 +69,8 @@
                     @foreach ($korban as $key => $index)
                         <tr class="text-left" colspan='2'>
                             <td class="text-center">{{ $i++ }}</td>
-                            <td>{{ $index->nama }}</td>
-                            <td class="text-center">{{ $index->umur }}</td>
+                            <td>{{ $index->nama_korban }}</td>
+                            {{-- <td class="text-center">{{ $index->umur }}</td>
                             <td class="text-center">
                                 @php
                                     $rentangTanggalArray = explode('-', $index->lamarawat);
@@ -85,7 +85,7 @@
                             <td class="text-center">{{ date('d F Y', strtotime($index->created_at)) }}</td>
                             <td class="text-right">Rp {{ number_format($index->biaya, 0, ',', '.') }}</td>
                             <td class="text-right">Rp {{ number_format($index->diskon, 0, ',', '.') }}</td>
-                            <td class="text-right">Rp {{ number_format($index->setelah_diskon, 0, ',', '.') }}</td>
+                            <td class="text-right">Rp {{ number_format($index->setelah_diskon, 0, ',', '.') }}</td> --}}
                         </tr>
                         @php
                             $totalBiaya += $index->biaya;

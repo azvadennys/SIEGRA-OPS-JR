@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
 
-            data_kendaraan::class,
+            data_kendaraan_seeder::class,
             IndoRegionSeeder::class,
         ]);
     }

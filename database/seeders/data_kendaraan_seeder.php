@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class data_kendaraan extends Seeder
+class data_kendaraan_seeder extends Seeder
 {
     /**
      * Run the database seeds.

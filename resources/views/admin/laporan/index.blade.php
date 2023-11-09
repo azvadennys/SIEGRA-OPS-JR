@@ -1,17 +1,15 @@
-@extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
+@extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100','title' => 'Cetak Laporan'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Laporan'])
-
     <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-8">
                 <div class="card shadow border-1">
                     <!-- Card header -->
                     <div class="card-header border-0">
                         <div class="row">
                             <div class="col-lg-6 col-7">
-                                <h3 class="mb-0">Buat Laporan</h3>
+                                <h3 class="mb-0">Cetak Laporan</h3>
                             </div>
                             <div class="col-lg-6 col-5 my-auto text-end">
                             </div>

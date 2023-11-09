@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\data_kecelakaan;
 use App\Models\korban;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class LaporanControler extends Controller
     public function index()
     {
         $data = [
-            'korban' => korban::orderby('created_at', 'desc')->get(),
+            'korban' => data_kecelakaan::orderby('created_at', 'desc')->get(),
         ];
         // dd($data);
         return view('admin.laporan.index', $data);
@@ -39,6 +40,7 @@ class LaporanControler extends Controller
         } elseif ($laporanType === 'bulanan') {
             $bulan_tahun = $request->input('bulan');
             $waktu = date('F Y', strtotime($bulan_tahun));
+            $rentang = null;
         } elseif ($laporanType === 'rentang') {
             $rentang = $request->input('rentang');
 
@@ -52,11 +54,11 @@ class LaporanControler extends Controller
 
             $waktu = date('d F Y', strtotime($tanggalAwal)) . ' sd ' . date('d F Y', strtotime($tanggalAkhir));
         }
-        // dd($waktu);
+        // dd($request);
 
 
         // Query menggunakan Eloquent Query Builder dengan kondisi dinamis
-        $query = korban::query();
+        $query = data_kecelakaan::query();
 
         if (!is_null($tanggal)) {
             $query->whereDate('created_at', '=', $tanggal);
@@ -101,7 +103,7 @@ class LaporanControler extends Controller
     public function store(Request $request)
     {
         $korban = $request->all();
-        korban::create($korban);
+        data_kecelakaan::create($korban);
         // session()->flash('success', 'Data added successfully!');
         return redirect()->back()->with('success', 'Data berhasil ditambahkan');
     }
@@ -112,10 +114,10 @@ class LaporanControler extends Controller
      * @param  \App\Models\korban  $korban
      * @return \Illuminate\Http\Response
      */
-    public function show(korban $korban, $id)
+    public function show(data_kecelakaan $korban, $id)
     {
         $data = [
-            'korban' => korban::find($id),
+            'korban' => data_kecelakaan::find($id),
         ];
         // dd($data);
         return view('show', $data);
@@ -127,7 +129,7 @@ class LaporanControler extends Controller
      * @param  \App\Models\korban  $korban
      * @return \Illuminate\Http\Response
      */
-    public function edit(korban $korban)
+    public function edit(data_kecelakaan $korban)
     {
         //
     }
@@ -139,7 +141,7 @@ class LaporanControler extends Controller
      * @param  \App\Models\korban  $korban
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, korban $korban)
+    public function update(Request $request, data_kecelakaan $korban)
     {
         //
     }
@@ -150,7 +152,7 @@ class LaporanControler extends Controller
      * @param  \App\Models\korban  $korban
      * @return \Illuminate\Http\Response
      */
-    public function destroy(korban $korban)
+    public function destroy(data_kecelakaan $korban)
     {
         //
     }

@@ -24,8 +24,14 @@
             </li>
             <li class="nav-item {{ (Request::is('kecelakaan/*') || Request::is('kecelakaan') ? 'active' : '') }} ">
                 <a class="nav-link" href="{{ route('kecelakaan') }}">
-                    <i class="material-icons">book</i>
+                    <i class="material-icons">storage</i>
                     <p>Data Kecelakaan</p>
+                </a>
+            </li>
+            <li class="nav-item {{ (Request::is('laporan/*') || Request::is('laporan') ? 'active' : '') }} ">
+                <a class="nav-link" href="{{ route('laporan') }}">
+                    <i class="material-icons">report</i>
+                    <p>Laporan</p>
                 </a>
             </li>
             <!-- your sidebar here -->
