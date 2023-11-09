@@ -101,7 +101,7 @@
                                     <div class="col-md-6 my-2">
                                         <div class="form-group">
                                             <label for="nopol" class="form-control-label">Nomor Kendaraan</label>
-                                            <select class="form-control " name="nopol" id="nopol">
+                                            <select class="form-control " name="nopol" id="nopol" required>
                                                 <option disabled selected>Pilih Nomor Kendaraan</option>
                                                 @foreach ($kendaraan as $index)
                                                     <option {{ old('nopol') == $index->nopol ? 'selected' : '' }}
@@ -136,7 +136,7 @@
                                         <div class="form-group">
                                             <label for="kel_tkp" class="form-control-label">Kelurahan, Kecamatan &
                                                 Kab/Kota</label>
-                                            <select class="form-control" name="kel_tkp" id="kel_tkp">
+                                            <select class="form-control" name="kel_tkp" id="kel_tkp" required>
                                                 <option disabled selected>Pilih Kelurahan, Kecamatan &
                                                     Kab/Kota</option>
                                                 @foreach ($kelurahan as $index)
@@ -164,7 +164,8 @@
                                         <div class="form-group">
                                             <label for="kel_korban" class="form-control-label">Kelurahan, Kecamatan &
                                                 Kab/Kota</label>
-                                            <select class="form-control kel_korban" name="kel_korban" id="kel_korban">
+                                            <select class="form-control kel_korban" name="kel_korban" id="kel_korban"
+                                                required>
                                                 <option disabled selected>Pilih Kelurahan, Kecamatan &
                                                     Kab/Kota</option>
                                                 @foreach ($kelurahan as $index)
@@ -185,7 +186,7 @@
                                     <div class="col-md-4 my-2">
                                         <div class="form-group">
                                             <label for="Laka" class="form-control-label">Kasus Laka</label>
-                                            <select class="form-control" name="kasus_laka" id="Laka">
+                                            <select class="form-control" name="kasus_laka" id="Laka" required>
                                                 <option disabled selected>Pilih Kasus Laka</option>
                                                 <option value="001 - TABRAKAN DEPAN - DEPAN"
                                                     {{ old('kasus_laka') == '001 - TABRAKAN DEPAN - DEPAN' ? 'selected' : '' }}>
@@ -266,7 +267,7 @@
                                             <label for="Pelanggaran" class="form-control-label">Kesimpulan
                                                 Pelanggaran</label>
                                             <select class="form-control" id="Pelanggaran" name="pelanggaran[]"
-                                                multiple="multiple">
+                                                multiple="multiple" required>
                                                 <option value="0"
                                                     {{ in_array('0', old('pelanggaran', [])) ? 'selected' : '' }}>Tidak Ada
                                                 </option>

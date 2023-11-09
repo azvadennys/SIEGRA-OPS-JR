@@ -170,7 +170,7 @@
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Yes'
                     }).then((result) => {
-                        if (result.isConfirmed) {
+                        if (result.value) {
                             deleteForm.submit();
                         }
                     })
