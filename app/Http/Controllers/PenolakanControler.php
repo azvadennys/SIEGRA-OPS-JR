@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\data_alamat;
 use App\Models\data_kecelakaan;
 use App\Models\data_kendaraan;
+use App\Models\data_kendaraan_model;
 use App\Models\Village;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class PenolakanControler extends Controller
     public function indexPenolakan()
     {
         $data = [
-            'korban' => data_kecelakaan::where('pelanggaran','!=','["0"]')->orderby('created_at', 'desc')->get(),
+            'korban' => data_kecelakaan::where('pelanggaran', '!=', '["0"]')->orderby('created_at', 'desc')->get(),
         ];
         // dd($data);
         return view('admin.laporan.penolakan', $data);
@@ -45,7 +46,7 @@ class PenolakanControler extends Controller
             'kelurahan' => Village::with(['district', 'district.regency', 'district.regency.province'])->whereHas('district.regency.province', function ($query) {
                 $query->where('name', 'BENGKULU');
             })->get(),
-            'kendaraan' => data_kendaraan::all(),
+            'kendaraan' => data_kendaraan_model::all(),
             'asal_berkas' => data_kecelakaan::distinct()->pluck('asal_berkas'),
             'instansi' => data_kecelakaan::distinct()->pluck('asal_berkas'),
             'samsat' => data_kecelakaan::distinct()->pluck('asal_berkas'),
@@ -133,7 +134,7 @@ class PenolakanControler extends Controller
             'kelurahan' => Village::with(['district', 'district.regency', 'district.regency.province'])->whereHas('district.regency.province', function ($query) {
                 $query->where('name', 'BENGKULU');
             })->get(),
-            'kendaraan' => Data_Kendaraan::all(),
+            'kendaraan' => data_kendaraan_model::all(),
             'asal_berkas' => data_kecelakaan::distinct()->pluck('asal_berkas'),
             'instansi' => data_kecelakaan::distinct()->pluck('asal_berkas'),
             'samsat' => data_kecelakaan::distinct()->pluck('asal_berkas'),
@@ -155,7 +156,7 @@ class PenolakanControler extends Controller
             'kelurahan' => Village::with(['district', 'district.regency', 'district.regency.province'])->whereHas('district.regency.province', function ($query) {
                 $query->where('name', 'BENGKULU');
             })->get(),
-            'kendaraan' => data_kendaraan::all(),
+            'kendaraan' => data_kendaraan_model::all(),
             'asal_berkas' => data_kecelakaan::distinct()->pluck('asal_berkas'),
             'instansi' => data_kecelakaan::distinct()->pluck('asal_berkas'),
             'samsat' => data_kecelakaan::distinct()->pluck('asal_berkas'),

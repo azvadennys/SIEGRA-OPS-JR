@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Data_Kendaraan;
+use App\Models\data_kendaraan_model;
 use Illuminate\Http\Request;
 
 class DataKendaraanController extends Controller
@@ -16,7 +16,7 @@ class DataKendaraanController extends Controller
     {
 
         $data = [
-            'data' => Data_Kendaraan::orderby('tgl_pkb', 'desc')->get(),
+            'data' => data_kendaraan_model::orderby('tgl_pkb', 'desc')->get(),
         ];
         // dd($data);
         return view('admin.kendaraan.index', $data);
@@ -32,7 +32,7 @@ class DataKendaraanController extends Controller
 
 
         $data = [
-            'jenis' => Data_Kendaraan::distinct()->pluck('jenis_kendaraan'),
+            'jenis' => data_kendaraan_model::distinct()->pluck('jenis_kendaraan'),
         ];
         return view('admin.kendaraan.tambah', $data);
     }
@@ -59,22 +59,22 @@ class DataKendaraanController extends Controller
                 'nopol.unique' => 'Nomor Polisi Sudah Ada',
             ]
         );
-        Data_Kendaraan::create($validated);
+        data_kendaraan_model::create($validated);
         return back()->with('success', 'Berhasil Tambah Data');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Data_Kendaraan  $data_Kendaraan
+     * @param  \App\Models\data_kendaraan_model  $data_Kendaraan
      * @return \Illuminate\Http\Response
      */
-    public function show(Data_Kendaraan $data_Kendaraan, $id)
+    public function show(data_kendaraan_model $data_Kendaraan, $id)
     {
 
         $data = [
-            'data' => Data_Kendaraan::where('nopol', $id)->first(),
-            'jenis' => Data_Kendaraan::distinct()->pluck('jenis_kendaraan'),
+            'data' => data_kendaraan_model::where('nopol', $id)->first(),
+            'jenis' => data_kendaraan_model::distinct()->pluck('jenis_kendaraan'),
         ];
         // dd($data['data']);
         return view('admin.kendaraan.detail', $data);
@@ -83,14 +83,14 @@ class DataKendaraanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Data_Kendaraan  $data_Kendaraan
+     * @param  \App\Models\data_kendaraan_model  $data_Kendaraan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Data_Kendaraan $data_Kendaraan, $id)
+    public function edit(data_kendaraan_model $data_Kendaraan, $id)
     {
         $data = [
-            'data' => Data_Kendaraan::where('nopol', $id)->first(),
-            'jenis' => Data_Kendaraan::distinct()->pluck('jenis_kendaraan'),
+            'data' => data_kendaraan_model::where('nopol', $id)->first(),
+            'jenis' => data_kendaraan_model::distinct()->pluck('jenis_kendaraan'),
         ];
         // dd($data['data']);
         return view('admin.kendaraan.edit', $data);
@@ -104,7 +104,7 @@ class DataKendaraanController extends Controller
      * @param  \App\Models\Data_Kendaraan  $data_Kendaraan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Data_Kendaraan $data_Kendaraan, $id)
+    public function update(Request $request, data_kendaraan_model $data_Kendaraan, $id)
     {
         if ($id == $request->nopol) {
             $validated = $request->validate(
@@ -132,7 +132,7 @@ class DataKendaraanController extends Controller
             );
         }
 
-        Data_Kendaraan::where('nopol', $id)->update($validated);
+        data_kendaraan_model::where('nopol', $id)->update($validated);
         return redirect()->route('kendaraan.edit', $request->nopol)->with('success', 'Berhasil Edit Data');
         // dd($request);
         //
@@ -141,13 +141,13 @@ class DataKendaraanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Data_Kendaraan  $data_Kendaraan
+     * @param  \App\Models\data_kendaraan_model  $data_Kendaraan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Data_Kendaraan $data_Kendaraan, $id)
+    public function destroy(data_kendaraan_model $data_Kendaraan, $id)
     {
         // dd($id);
-        Data_Kendaraan::where('nopol', $id)->delete();
+        data_kendaraan_model::where('nopol', $id)->delete();
         return redirect()->back()->with('success', 'Berhasil Hapus Data');
         // dd($id);
     }
