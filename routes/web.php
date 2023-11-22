@@ -34,6 +34,7 @@ use App\Http\Controllers\DataKecelakaanControler;
 use App\Http\Controllers\DataKendaraanController;
 use App\Http\Controllers\korbanControler;
 use App\Http\Controllers\LaporanControler;
+use App\Http\Controllers\PenolakanControler;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 
@@ -60,6 +61,12 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/kecelakaan/{id}/edit', 'edit')->name('kecelakaan.edit');
 		Route::post('/kecelakaan/{id}', 'update')->name('kecelakaan.update');
 		Route::delete('/kecelakaan/delete/{id}', 'destroy')->name('kecelakaan.destroy');
+
+	});
+	Route::controller(PenolakanControler::class)->group(function () {
+
+		
+		Route::get('/penolakan-santunan', 'indexPenolakan')->name('penolakanSantunan');
 	});
 	Route::controller(DataKendaraanController::class)->group(function () {
 		Route::get('/kendaraan', 'index')->name('kendaraan');

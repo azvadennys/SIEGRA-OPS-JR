@@ -93,12 +93,17 @@
                                         <input class="form-control" id="no_laporan" type="text" name="no_laporan"
                                             value="{{ old('no_laporan') }}" required>
                                     </div>
-                                    <div class="col-md-6 my-2">
+                                    <div class="col-md-4 my-2">
                                         <label for="petugas">Petugas</label>
                                         <input class="form-control" id="petugas" type="text" name="petugas"
                                             value="{{ old('petugas') }}" required>
                                     </div>
-                                    <div class="col-md-6 my-2">
+                                    <div class="col-md-4 my-2">
+                                        <label for="created_at">Tanggal Transaksi</label>
+                                        <input class="form-control" id="created_at" type="date" name="created_at"
+                                            value="{{ old('created_at') }}" required>
+                                    </div>
+                                    <div class="col-md-4 my-2">
                                         <div class="form-group">
                                             <label for="nopol" class="form-control-label">Nomor Kendaraan</label>
                                             <select class="form-control " name="nopol" id="nopol" required>
@@ -188,29 +193,29 @@
                                             <label for="Laka" class="form-control-label">Kasus Laka</label>
                                             <select class="form-control" name="kasus_laka" id="Laka" required>
                                                 <option disabled selected>Pilih Kasus Laka</option>
-                                                <option value="001 - TABRAKAN DEPAN - DEPAN"
-                                                    {{ old('kasus_laka') == '001 - TABRAKAN DEPAN - DEPAN' ? 'selected' : '' }}>
+                                                <option value="TABRAKAN DEPAN - DEPAN"
+                                                    {{ old('kasus_laka') == 'TABRAKAN DEPAN - DEPAN' ? 'selected' : '' }}>
                                                     001 - TABRAKAN DEPAN - DEPAN</option>
-                                                <option value="002 - TABRAKAN DEPAN - SAMPING"
-                                                    {{ old('kasus_laka') == '002 - TABRAKAN DEPAN - SAMPING' ? 'selected' : '' }}>
+                                                <option value="TABRAKAN DEPAN - SAMPING"
+                                                    {{ old('kasus_laka') == 'TABRAKAN DEPAN - SAMPING' ? 'selected' : '' }}>
                                                     002 - TABRAKAN DEPAN - SAMPING</option>
-                                                <option value="003 - TABRAKAN DEPAN - BELAKANG"
-                                                    {{ old('kasus_laka') == '003 - TABRAKAN DEPAN - BELAKANG' ? 'selected' : '' }}>
+                                                <option value="TABRAKAN DEPAN - BELAKANG"
+                                                    {{ old('kasus_laka') == 'TABRAKAN DEPAN - BELAKANG' ? 'selected' : '' }}>
                                                     003 - TABRAKAN DEPAN - BELAKANG</option>
-                                                <option value="004 - TABRAKAN BELAKANG - SAMPING"
-                                                    {{ old('kasus_laka') == '004 - TABRAKAN BELAKANG - SAMPING' ? 'selected' : '' }}>
+                                                <option value="TABRAKAN BELAKANG - SAMPING"
+                                                    {{ old('kasus_laka') == 'TABRAKAN BELAKANG - SAMPING' ? 'selected' : '' }}>
                                                     004 - TABRAKAN BELAKANG - SAMPING</option>
-                                                <option value="005 - TABRAKAN SAMPING - SAMPING"
-                                                    {{ old('kasus_laka') == '005 - TABRAKAN SAMPING - SAMPING' ? 'selected' : '' }}>
+                                                <option value="TABRAKAN SAMPING - SAMPING"
+                                                    {{ old('kasus_laka') == 'TABRAKAN SAMPING - SAMPING' ? 'selected' : '' }}>
                                                     005 - TABRAKAN SAMPING - SAMPING</option>
-                                                <option value="006 - TIDAK DALAM PENGUASAAN"
-                                                    {{ old('kasus_laka') == '006 - TIDAK DALAM PENGUASAAN' ? 'selected' : '' }}>
+                                                <option value="TIDAK DALAM PENGUASAAN"
+                                                    {{ old('kasus_laka') == 'TIDAK DALAM PENGUASAAN' ? 'selected' : '' }}>
                                                     006 - TIDAK DALAM PENGUASAAN</option>
-                                                <option value="007 - TABRAKAN BERUNTUN/GANDA"
-                                                    {{ old('kasus_laka') == '007 - TABRAKAN BERUNTUN/GANDA' ? 'selected' : '' }}>
+                                                <option value="TABRAKAN BERUNTUN/GANDA"
+                                                    {{ old('kasus_laka') == 'TABRAKAN BERUNTUN/GANDA' ? 'selected' : '' }}>
                                                     007 - TABRAKAN BERUNTUN/GANDA</option>
-                                                <option value="008 - MENABRAK PEJALAN KAKI/SEJENISNYA"
-                                                    {{ old('kasus_laka') == '008 - MENABRAK PEJALAN KAKI/SEJENISNYA' ? 'selected' : '' }}>
+                                                <option value="MENABRAK PEJALAN KAKI/SEJENISNYA"
+                                                    {{ old('kasus_laka') == 'MENABRAK PEJALAN KAKI/SEJENISNYA' ? 'selected' : '' }}>
                                                     008 - MENABRAK PEJALAN KAKI/SEJENISNYA</option>
                                             </select>
 
@@ -241,11 +246,20 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 my-2">
-                                        <div class="form-group">
-                                            <label for="status" class="form-control-label">Status</label>
-                                            <input class="form-control" type="text" id="status" name="status"
-                                                value="{{ old('status') }}" required>
-                                        </div>
+                                        <label for="status" class="">Status</label>
+                                        <select class="form-control" id="status" name="status" required>
+                                            <option disabled selected>Pilih Status</option>
+                                            <option {{ old('status') == 'MENINGGAL' ? 'selected' : '' }}
+                                                value="MENINGGAL">MENINGGAL</option>
+                                            <option {{ old('status') == 'LUKA-LUKA' ? 'selected' : '' }}
+                                                value="LUKA-LUKA">LUKA-LUKA</option>
+                                            <option {{ old('status') == 'CACAT TETAP' ? 'selected' : '' }}
+                                                value="CACAT TETAP">CACAT TETAP</option>
+                                        </select>
+
+                                        @error('status')
+                                            <p class="text-danger text-xs pt-1"> {{ $message }} </p>
+                                        @enderror
                                     </div>
                                     <div class="col-md-4 my-2">
                                         <div class="form-group">
@@ -351,6 +365,7 @@
             $('#Laka').select2();
             $('#Pelanggaran').select2();
             $('#nopol').select2();
+            $('#status').select2();
             // $('input[name="lamarawat"]').daterangepicker({
             //     opens: 'left'
             // }, function(start, end, label) {

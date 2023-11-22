@@ -25,7 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             data_kendaraan_seeder::class,
+            data_kecelakaan::class,
             IndoRegionSeeder::class,
+            data_alamat::class,
         ]);
     }
 }

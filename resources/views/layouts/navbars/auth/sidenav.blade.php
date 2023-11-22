@@ -16,22 +16,34 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item {{ (Request::is('kendaraan/*') || Request::is('kendaraan') ? 'active' : '')}} ">
+            <li class="nav-item {{ Request::is('kendaraan/*') || Request::is('kendaraan') ? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('kendaraan') }}">
                     <i class="material-icons">airport_shuttle</i>
                     <p>Data Kendaraan</p>
                 </a>
             </li>
-            <li class="nav-item {{ (Request::is('kecelakaan/*') || Request::is('kecelakaan') ? 'active' : '') }} ">
+            <li class="nav-item {{ Request::is('kecelakaan/*') || Request::is('kecelakaan') ? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('kecelakaan') }}">
                     <i class="material-icons">storage</i>
                     <p>Data Kecelakaan</p>
                 </a>
             </li>
-            <li class="nav-item {{ (Request::is('laporan/*') || Request::is('laporan') ? 'active' : '') }} ">
+            <li class="nav-item {{ Request::is('penolakan-santunan/*') || Request::is('penolakan-santunan') ? 'active' : '' }} ">
+                <a class="nav-link" href="{{ route('penolakanSantunan') }}">
+                    <i class="material-icons">report</i>
+                    <p>Penolakan Santunan</p>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('laporan/*') || Request::is('laporan') ? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('laporan') }}">
                     <i class="material-icons">report</i>
-                    <p>Laporan</p>
+                    <p>Laporan Santunan</p>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('laporan/*') || Request::is('laporan') ? 'active' : '' }} ">
+                <a class="nav-link" href="{{ route('laporan') }}">
+                    <i class="material-icons">report</i>
+                    <p>Laporan Kecelakaan</p>
                 </a>
             </li>
             <!-- your sidebar here -->

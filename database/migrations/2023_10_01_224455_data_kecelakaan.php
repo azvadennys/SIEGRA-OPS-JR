@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('no_laporan');
             $table->string('petugas');
             $table->string('nama_korban');
-            $table->string('tgl_kejadian');
+            $table->dateTime('tgl_kejadian');
             $table->string('kasus_laka');
             $table->string('uraian_singkat');
             $table->string('no_hp');
