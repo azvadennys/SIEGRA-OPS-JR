@@ -37,13 +37,13 @@
             <li class="nav-item {{ Request::is('laporan/*') || Request::is('laporan') ? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('laporan') }}">
                     <i class="material-icons">report</i>
-                    <p>Laporan Santunan</p>
+                    <p>Rekapitulasi Pembayaran</p>
                 </a>
             </li>
-            <li class="nav-item {{ Request::is('laporan/*') || Request::is('laporan') ? 'active' : '' }} ">
+            <li class="nav-item {{ Request::is('/*') || Request::is('') ? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('laporan') }}">
                     <i class="material-icons">report</i>
-                    <p>Laporan Kecelakaan</p>
+                    <p>Laporan Tingkat Kecelakaan</p>
                 </a>
             </li>
             <!-- your sidebar here -->

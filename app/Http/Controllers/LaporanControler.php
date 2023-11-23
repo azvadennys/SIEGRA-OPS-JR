@@ -6,6 +6,7 @@ use App\Models\data_kecelakaan;
 use App\Models\korban;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LaporanControler extends Controller
 {
@@ -58,7 +59,7 @@ class LaporanControler extends Controller
 
 
         // Query menggunakan Eloquent Query Builder dengan kondisi dinamis
-        $query = data_kecelakaan::query();
+        $query = data_kecelakaan::groupBy('status')->select('status',DB::raw('count(*) as total'),DB::raw('sum(nominal_santunan) as total_santunan'));
 
         if (!is_null($tanggal)) {
             $query->whereDate('created_at', '=', $tanggal);

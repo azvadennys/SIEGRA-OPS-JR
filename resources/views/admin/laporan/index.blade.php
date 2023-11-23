@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100','title' => 'Cetak Laporan'])
+@extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100','title' => 'Cetak Rekapitulasi Pembayaran'])
 
 @section('content')
     <div class="container-fluid mt--7">
@@ -9,7 +9,7 @@
                     <div class="card-header border-0">
                         <div class="row">
                             <div class="col-lg-6 col-7">
-                                <h3 class="mb-0">Cetak Laporan</h3>
+                                <h3 class="mb-0">Cetak Rekapitulasi Pembayaran</h3>
                             </div>
                             <div class="col-lg-6 col-5 my-auto text-end">
                             </div>
