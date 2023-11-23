@@ -30,19 +30,19 @@
             </li>
             <li class="nav-item {{ Request::is('penolakan-santunan/*') || Request::is('penolakan-santunan') ? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('penolakanSantunan') }}">
-                    <i class="material-icons">report</i>
+                    <i class="material-icons">cancel</i>
                     <p>Penolakan Santunan</p>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('laporan-rekapitulasi/*') || Request::is('laporan-rekapitulasi') ? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('laporan') }}">
-                    <i class="material-icons">report</i>
+                    <i class="material-icons">description</i>
                     <p>Rekapitulasi Pembayaran</p>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('/*') || Request::is('') ? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('laporan') }}">
-                    <i class="material-icons">report</i>
+                    <i class="material-icons">show_chart</i>
                     <p>Laporan Tingkat Kecelakaan</p>
                 </a>
             </li>
