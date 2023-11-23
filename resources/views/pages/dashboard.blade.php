@@ -297,17 +297,16 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">content_copy</i>
+                            <i class="material-icons">airport_shuttle</i>
                         </div>
-                        <p class="card-category">Used Space</p>
-                        <h3 class="card-title">49/50
-                            <small>GB</small>
+                        <p class="card-category">TOTAL DATA KENDARAAN</p>
+                        <h3 class="card-title">{{ $totalKendaraan }}
                         </h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <a href="javascript:;">Get More Space...</a>
+                            {{-- <i class="material-icons text-danger">warning</i>
+                            <a href="javascript:;">Get More Space...</a> --}}
                         </div>
                     </div>
                 </div>
@@ -316,14 +315,14 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-success card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">store</i>
+                            <i class="material-icons">storage</i>
                         </div>
-                        <p class="card-category">Revenue</p>
-                        <h3 class="card-title">$34,245</h3>
+                        <p class="card-category">TOTAL DATA KECELAKAAN</p>
+                        <h3 class="card-title">{{ $totalKecelakaan }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
+                            {{-- <i class="material-icons">date_range</i> Last 24 Hours --}}
                         </div>
                     </div>
                 </div>
@@ -334,12 +333,12 @@
                         <div class="card-icon">
                             <i class="material-icons">info_outline</i>
                         </div>
-                        <p class="card-category">Fixed Issues</p>
-                        <h3 class="card-title">75</h3>
+                        <p class="card-category">KORBAN {{ $KorbanTahunIni['tanggal'] }}</p>
+                        <h3 class="card-title">{{ $KorbanTahunIni['totalKorban'] }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Github
+                            {{-- <i class="material-icons">local_offer</i> Tracked from Github --}}
                         </div>
                     </div>
                 </div>
@@ -348,14 +347,14 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-info card-header-icon">
                         <div class="card-icon">
-                            <i class="fa fa-twitter"></i>
+                            <i class="material-icons">attach_money</i>
                         </div>
-                        <p class="card-category">Followers</p>
-                        <h3 class="card-title">+245</h3>
+                        <p class="card-category">TOTAL SANTUNAN {{ $SantunanTahunIni['tanggal'] }}</p>
+                        <h3 class="card-title">Rp {{ number_format($SantunanTahunIni['totalSantunan'], 0, ',', '.') }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">update</i> Just Updated
+                            {{-- <i class="material-icons">update</i> Just Updated --}}
                         </div>
                     </div>
                 </div>

@@ -61,11 +61,10 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/kecelakaan/{id}/edit', 'edit')->name('kecelakaan.edit');
 		Route::post('/kecelakaan/{id}', 'update')->name('kecelakaan.update');
 		Route::delete('/kecelakaan/delete/{id}', 'destroy')->name('kecelakaan.destroy');
-
 	});
 	Route::controller(PenolakanControler::class)->group(function () {
 
-		
+
 		Route::get('/penolakan-santunan', 'indexPenolakan')->name('penolakanSantunan');
 	});
 	Route::controller(DataKendaraanController::class)->group(function () {
@@ -79,8 +78,8 @@ Route::middleware(['auth'])->group(function () {
 	});
 
 
-	Route::get('/laporan', [LaporanControler::class, 'index'])->name('laporan');
-	Route::post('/laporan-cetak', [LaporanControler::class, 'cetak'])->name('laporan.cetak');
+	Route::get('/laporan-rekapitulasi', [LaporanControler::class, 'index'])->name('laporan');
+	Route::post('/laporan-rekapitulasi/cetak', [LaporanControler::class, 'cetak'])->name('laporan.cetak');
 });
 
 // Route untuk mengaktifkan mode maintenance

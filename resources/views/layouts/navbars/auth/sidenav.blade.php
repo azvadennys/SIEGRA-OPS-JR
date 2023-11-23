@@ -34,7 +34,7 @@
                     <p>Penolakan Santunan</p>
                 </a>
             </li>
-            <li class="nav-item {{ Request::is('laporan/*') || Request::is('laporan') ? 'active' : '' }} ">
+            <li class="nav-item {{ Request::is('laporan-rekapitulasi/*') || Request::is('laporan-rekapitulasi') ? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('laporan') }}">
                     <i class="material-icons">report</i>
                     <p>Rekapitulasi Pembayaran</p>

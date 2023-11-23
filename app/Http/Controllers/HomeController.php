@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\data_kecelakaan;
+use App\Models\data_kendaraan_model;
 use App\Models\korban;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,10 @@ class HomeController extends Controller
             "bulanIni" => HomeController::rekapBulanIni(),
             "tahunIni" => HomeController::rekapTahunIni(),
             "seluruh" => HomeController::rekapSeluruh(),
+            "KorbanTahunIni" => HomeController::KorbanTahunIni(),
+            "SantunanTahunIni" => HomeController::SantunanTahunIni(),
+            'totalKendaraan' => data_kendaraan_model::count(),
+            'totalKecelakaan' => data_kecelakaan::count(),
             "title" => 'Dashboard',
 
         ];
@@ -37,7 +42,46 @@ class HomeController extends Controller
         return view('pages.dashboard', $data);
     }
 
+    public function KorbanTahunIni()
+    {
+        // Mengambil data dari tabel korbans untuk tahun ini
+        $tahunIni = now()->year;
+        $dataTahunIni = data_kecelakaan::whereYear('created_at', $tahunIni)->get();
 
+        // Menghitung total biaya, diskon, dan setelah_diskon
+        $totalKorban = $dataTahunIni->count();
+
+        $response = [
+            'totalKorban' => $totalKorban,
+            'tanggal' => 'TAHUN INI (' . date('Y', strtotime($tahunIni)) . ')'
+        ];
+
+        return $response;;
+    }
+    public function SantunanTahunIni()
+    {
+        $tahunIni = now()->year;
+        $totalSantunan = data_kecelakaan::whereYear('created_at', $tahunIni)->sum('nominal_santunan');
+
+
+        $response = [
+            'totalSantunan' => $totalSantunan,
+            'tanggal' => 'TAHUN INI (' . date('Y', strtotime($tahunIni)) . ')'
+        ];
+
+        return $response;;
+    }
+    public function totalKendaraan()
+    {
+        $totalKendaraan = data_kendaraan_model::count();
+
+        $response = [
+            'totalKendaraan' => $totalKendaraan,
+            // 'tanggal' => 'TAHUN INI (' . date('Y', strtotime($tahunIni)) . ')'
+        ];
+
+        return $response;;
+    }
     public function rekapHariIni()
     {
         // Mengambil data dari tabel korbans untuk hari ini
