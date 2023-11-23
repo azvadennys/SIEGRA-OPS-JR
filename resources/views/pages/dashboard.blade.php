@@ -359,6 +359,94 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-warning text-center">
+                        TOTAL KECELAKAAN BERDASARKAN KOTA/KAB
+                        {{-- <div class="ct-chart" id="websiteViewsChart"></div> --}}
+                        
+                    </div>
+                    <div class="card-body">
+                        
+                <canvas id="barChart"></canvas>
+                        {{-- <h4 class="card-title">Email Subscriptions</h4>
+                        <p class="card-category">Last Campaign Performance</p> --}}
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            {{-- <i class="material-icons">access_time</i> campaign sent 2 days ago --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    {{-- <script src="../assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script> --}}
+    <script>
+        var korbanData = {!! $tkpByYear !!};
+
+        var regencies = [];
+        var totals = [];
+
+        korbanData.forEach(function(item) {
+            regencies.push(item.regency);
+            totals.push(item.total);
+        });
+
+        var ctx = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: regencies,
+                datasets: [{
+                    label: 'Total Korban',
+                    data: totals,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        if ($('#dailySalesChart').length != 0 && $('#websiteViewsChart').length != 0) {
+            /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+
+            dataDailySalesChart = {
+                labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+                series: [
+                    [12, 17, 7, 17, 23, 18, 38]
+                ]
+            };
+
+            optionsDailySalesChart = {
+                lineSmooth: Chartist.Interpolation.cardinal({
+                    tension: 0
+                }),
+                low: 0,
+                high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+                chartPadding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                },
+            }
+
+            var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart,
+                optionsDailySalesChart);
+
+            var animationHeaderChart = new Chartist.Line('#websiteViewsChart', dataDailySalesChart,
+                optionsDailySalesChart);
+        }
+    </script>
 @endsection

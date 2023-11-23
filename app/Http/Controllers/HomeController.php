@@ -35,6 +35,7 @@ class HomeController extends Controller
             "SantunanTahunIni" => HomeController::SantunanTahunIni(),
             'totalKendaraan' => data_kendaraan_model::count(),
             'totalKecelakaan' => data_kecelakaan::count(),
+            'tkpByYear' => HomeController::tkpByYear(),
             "title" => 'Dashboard',
 
         ];
@@ -70,6 +71,20 @@ class HomeController extends Controller
         ];
 
         return $response;;
+    }
+
+    public function tkpByYear()
+    {
+        $tkpByRegency = data_kecelakaan::join('data_alamat', 'data_kecelakaan.id', '=', 'data_alamat.data_kecelakaan_id')->where('jenis', 'tkp')
+            ->join('villages', 'data_alamat.villages_id', '=', 'villages.id')
+            ->join('districts', 'villages.district_id', '=', 'districts.id')
+            ->join('regencies', 'districts.regency_id', '=', 'regencies.id')
+            ->selectRaw('regencies.name as regency, COUNT(*) as total')
+            ->groupBy('regency')
+            ->get();
+
+        // dd($tkpByRegency);
+        return $tkpByRegency;;
     }
     public function totalKendaraan()
     {
