@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\data_kecelakaan;
 use App\Models\korban;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class LaporanControler extends Controller
 {
@@ -176,7 +182,58 @@ class LaporanControler extends Controller
         return view('admin.laporan.cetak', $data);
     }
 
-    public function laporanWord()
+    public function laporanWord($id, $name)
     {
+        // Load the Word template
+        // $templatePath = asset('TemplateWord/templateLaporan.docx');
+        $index = data_kecelakaan::with(['alamat_korban'])->where('id', $id)->where('nama_korban', $name)->first();
+
+        // dd($index);
+        if ($index != NULL) {
+
+            $templateProcessor = new TemplateProcessor('TemplateWord/templateLaporan.docx');
+
+            // Replace placeholders in the template
+            $templateProcessor->setValue('tgl_transaksi',  \Carbon\Carbon::parse($index->created_at)->locale('id')->isoFormat('D MMMM Y'));
+            $templateProcessor->setValue('id', $index->id);
+            $templateProcessor->setValue('nama_korban', $index->nama_korban);
+            $templateProcessor->setValue('alamat_korban', $index->alamat_korban->alamat . ', KEL. ' . $index->alamat_korban->village->name . ', KEC. ' . $index->alamat_korban->village->district->name . ', ' . $index->alamat_korban->village->district->regency->name . ', ' . $index->alamat_korban->village->district->regency->province->name);
+            $templateProcessor->setValue('pembuat_laporan', $index->pembuat_laporan);
+            $templateProcessor->setValue('no_laporan', $index->no_laporan);
+            $templateProcessor->setValue('tgl_laporan',  \Carbon\Carbon::parse($index->tgl_laporan)->locale('id')->isoFormat('D MMMM Y'));
+
+            $selectedValues = json_decode($index->pelanggaran);
+            $pelanggaranOptions = [
+                '0' => 'Tidak Ada',
+                '1' => 'Melawan arus lalu lintas',
+                '2' => 'Mengemudikan Kendaraan Bermotor tanpa Surat Izin Mengemudi yang sah',
+                '3' => 'Mengemudikan Kendaraan Bermotor yang telah dimodifikasi dimensi, mesin, atau kemampuan daya angkutnya dengan tata cara yang tidak sesuai ketentuan Peraturan Perundang-undangan',
+                '4' => 'Menerobos palang pintu perlintasan kereta api, yaitu mengemudikan Kendaraan Bermotor pada perlintasan antara kereta api dan Jalan yang tidak berhenti ketika sinyal sudah berbunyi, palang pintu kereta api sudah mulai ditutup, dan/atau ada isyarat lain',
+                '5' => 'Mengemudikan Kendaraan Bermotor dengan tidak wajar dan/atau melakukan kegiatan lain karena membuat konten yang dapat membahayakan keamanan, keselamatan serta mengganggu ketertiban dan kelancaran lalu lintas dan angkutan jalan',
+                '6' => 'Mengemudikan Kendaraan Bermotor yang tidak teregistrasi atau tidak dilengkapi dengan Surat Tanda Coba Kendaraan Bermotor',
+            ];
+            $selectedValues = array_filter($selectedValues, function ($value) {
+                return $value !== '0';
+            });
+            $selectedLabels = array_map(function ($value) use ($pelanggaranOptions) {
+                return $pelanggaranOptions[$value];
+            }, $selectedValues);
+            $result = implode(', ', $selectedLabels);
+
+            $templateProcessor->setValue('pelanggaran', $result);
+            // Save the Word document
+            $wordOutputPath = 'TemplateWord/' . $index->nama_korban . '.docx';
+            $templateProcessor->saveAs($wordOutputPath);
+
+            //    // Convert Word to PDF
+            //    $pdfOutputPath = 'TemplateWord/generated_document.pdf';
+            //    $pdf = PDF::loadView('pdf.template', ['key' => 'value']); // Assuming 'pdf.template' is your PDF view
+            //    $pdf->save($pdfOutputPath);
+
+            // Return a download response
+            return response()->download($wordOutputPath)->deleteFileAfterSend(true);
+        } else {
+            return "DATA YANG ANDA CARI TIDAK ADA !";
+        }
     }
 }

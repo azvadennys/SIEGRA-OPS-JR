@@ -47,6 +47,8 @@ Route::get('/reset-password', [ResetPassword::class, 'show'])->middleware('guest
 Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
 Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
 Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
+
+Route::get('/laporan-penolakan/{id}/{name}', [LaporanControler::class, 'laporanWord'])->name('laporan.penolakan');
 Route::middleware(['auth'])->group(function () {
 	Route::get('/', function () {
 		return redirect('/dashboard');

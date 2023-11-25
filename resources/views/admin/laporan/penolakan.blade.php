@@ -94,14 +94,14 @@
 
                                                 <td>
                                                     @php
-                                                        $textTolak = 'Informasi Pengajuan Santunan *JASA RAHARJA* Atas Nama *' . $index->nama_korban . '* Telah *DITOLAK*.' . PHP_EOL . PHP_EOL . 'Silahkan melihat surat pelonakan melalui link dibawah ini : ' . PHP_EOL . 'siegra.com';
+                                                        $textTolak = 'Informasi Pengajuan Santunan *JASA RAHARJA* Atas Nama *' . $index->nama_korban . '* Telah *DITOLAK*.' . PHP_EOL . PHP_EOL . 'Silahkan melihat surat pelonakan melalui link dibawah ini : ' . PHP_EOL . route('laporan.penolakan',['id' => $index->id, 'name' => $index->nama_korban]);
                                                         $url_encoded = urlencode($textTolak);
                                                     @endphp
                                                     <div class="text-right">
                                                         <a href="https://api.whatsapp.com/send/?phone={{ $index->no_hp }}&text={{ $url_encoded }}"
                                                             class="btn btn-success btn-sm btnEdit" target="_blank"><i
                                                                 class="fa fa-fa-whatsapp"></i> Whatsapp</a>
-                                                        <a href="{{ route('kecelakaan.edit', $index->id) }}"
+                                                        <a href="{{ route('laporan.penolakan',['id' => $index->id, 'name' => $index->nama_korban]) }}"
                                                             class="btn btn-info  btn-sm btnEdit"><i class="fa fa-edit"></i>
                                                             Cetak Surat Penolakan</a>
 
