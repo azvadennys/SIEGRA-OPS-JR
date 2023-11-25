@@ -363,12 +363,12 @@
                 <div class="card card-chart">
                     <div class="card-header card-header-warning text-center">
                         TOTAL KECELAKAAN BERDASARKAN KOTA/KAB
-                        {{-- <div class="ct-chart" id="websiteViewsChart"></div> --}}
-                        
+                        <div class="ct-chart" id="websiteViewsChar"></div>
+
                     </div>
                     <div class="card-body">
-                        
-                <canvas id="barChart"></canvas>
+
+                        <canvas id="barChart"></canvas>
                         {{-- <h4 class="card-title">Email Subscriptions</h4>
                         <p class="card-category">Last Campaign Performance</p> --}}
                     </div>
@@ -381,6 +381,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@push('custom_js')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     {{-- <script src="../assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script> --}}
@@ -418,35 +421,38 @@
         });
     </script>
     <script>
-        if ($('#dailySalesChart').length != 0 && $('#websiteViewsChart').length != 0) {
-            /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+        var korbanData = {!! $tkpByYear !!};
 
-            dataDailySalesChart = {
-                labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-                series: [
-                    [12, 17, 7, 17, 23, 18, 38]
-                ]
-            };
+        var regencies = [];
+        var totals = [];
 
-            optionsDailySalesChart = {
-                lineSmooth: Chartist.Interpolation.cardinal({
-                    tension: 0
-                }),
-                low: 0,
-                high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-                chartPadding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                },
-            }
+        korbanData.forEach(function(item) {
+            regencies.push(item.regency);
+            totals.push(item.total);
+        });
+        dataDailySalesChart = {
+            labels: regencies,
+            series: [
+                totals
+            ]
+        };
 
-            var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart,
-                optionsDailySalesChart);
-
-            var animationHeaderChart = new Chartist.Line('#websiteViewsChart', dataDailySalesChart,
-                optionsDailySalesChart);
+        optionsDailySalesChart = {
+            lineSmooth: Chartist.Interpolation.cardinal({
+                tension: 0
+            }),
+            low: 0,
+            high: 150, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+            chartPadding: {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
+            },
         }
+
+
+        var animationHeaderChart = new Chartist.Line('#websiteViewsChar', dataDailySalesChart,
+            optionsDailySalesChart);
     </script>
-@endsection
+@endpush

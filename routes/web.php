@@ -80,6 +80,9 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/laporan-rekapitulasi', [LaporanControler::class, 'index'])->name('laporan');
 	Route::post('/laporan-rekapitulasi/cetak', [LaporanControler::class, 'cetak'])->name('laporan.cetak');
+
+	Route::get('/laporan-kecelakaan', [LaporanControler::class, 'indexKecelakaan'])->name('laporan.kecelakaan');
+	Route::post('/laporan-kecelakaan/cetak', [LaporanControler::class, 'cetakKecelakaan'])->name('laporan.kecelakaan.cetak');
 });
 
 // Route untuk mengaktifkan mode maintenance
