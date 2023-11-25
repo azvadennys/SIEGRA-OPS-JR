@@ -58,7 +58,7 @@
                                         <select class="form-control" name="region" id="region">
                                             <option value="village">Kelurahan</option>
                                             <option value="district">Kecamatan</option>
-                                            <option value="regencie">Kota / Kabupatern</option>
+                                            <option value="regencie">Kota / Kabupaten</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -134,7 +134,7 @@
                     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
                         .format('YYYY-MM-DD'));
                 });
-                
+
                 laporanType.dispatchEvent(new Event('change'));
 
                 $('#region').select2();

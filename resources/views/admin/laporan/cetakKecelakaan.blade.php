@@ -80,7 +80,7 @@
                     ?>
 
                     @foreach ($korban as $key => $index)
-                        <tr class="text-left" colspan='2'>
+                        <tr class="text-left">
                             <td><b>{{ $i }}</b></td>
                             @if ($type == 'KELURAHAN')
                                 <td><b>{{ $index->region_name }}</b></td>
@@ -98,15 +98,22 @@
                             <td><b>{{ $index->total }}</b></td>
                             </td>
 
-                            @php
-                                $totalKorban += $index->total;
-                                $i++;
-                            @endphp
 
                         </tr>
+
+                        @php
+                            $totalKorban += $index->total;
+                            $i++;
+                        @endphp
                     @endforeach
-                    <tr class="text-left" colspan='2'>
-                        <td colspan="2"><b>TOTAL KECELAKAAN</b></td>
+                    <tr class="text-left">
+                        @if ($type == 'KELURAHAN')
+                            <td colspan="4"><b>TOTAL KECELAKAAN</b></td>
+                        @elseif($type == 'KECAMATAN')
+                            <td colspan="3"><b>TOTAL KECELAKAAN</b></td>
+                        @else
+                            <td colspan="2"><b>TOTAL KECELAKAAN</b></td>
+                        @endif
                         <td><b>{{ $totalKorban }}</b></td>
 
                     </tr>
@@ -175,7 +182,7 @@
         // This function will be called when the page is loaded
         window.onload = function() {
             // Trigger the print dialog
-            window.print();
+            // window.print();
         };
     </script>
 </body>

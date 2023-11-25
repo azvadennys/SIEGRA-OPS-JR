@@ -62,13 +62,6 @@ class LaporanControler extends Controller
 
             $waktu = date('d F Y', strtotime($tanggalAwal)) . ' sd ' . date('d F Y', strtotime($tanggalAkhir));
         }
-        // dd($request);
-        // $query = data_kecelakaan::join('data_alamat', 'data_kecelakaan.id', '=', 'data_alamat.data_kecelakaan_id')
-        //     ->where('jenis', 'tkp')
-        //     ->join('villages', 'data_alamat.villages_id', '=', 'villages.id')
-        //     ->join('districts', 'villages.district_id', '=', 'districts.id')
-        //     ->join('regencies', 'districts.regency_id', '=', 'regencies.id');
-
         $query = data_kecelakaan::with(['alamat_tkp.Village.district.regency']);
 
         if ($request->region == 'village') {
@@ -96,14 +89,6 @@ class LaporanControler extends Controller
                 ->groupBy('regencies.name')
                 ->orderBy('total', 'desc');
         }
-        // if ($request->region == 'village') {
-        //     $query->selectRaw('alamat_tkp.village.name as region_name, COUNT(*) as total');
-        // } elseif ($request->region == 'district') {
-        //     $query->selectRaw('alamat_tkp.village.district.name as region_name, COUNT(*) as total');
-        // } else {
-        //     $query->selectRaw('alamat_tkp.village.district.regency.name as region_name, COUNT(*) as total');
-        // }
-
         // Apply additional conditions
         if (!is_null($tanggal)) {
             $query->whereDate('data_kecelakaan.created_at', '=', $tanggal);
@@ -117,9 +102,6 @@ class LaporanControler extends Controller
         if (!is_null($rentang)) {
             $query->whereBetween('data_kecelakaan.created_at', [$startDate, $endDate]);
         }
-
-        // Group by the region_name column or alias used in the selectRaw
-        // $query->groupBy('region_name');
 
         $korban = $query->get();
 
@@ -192,5 +174,9 @@ class LaporanControler extends Controller
         // dd($data);
         // Lakukan sesuai dengan kebutuhan Anda, misalnya, kirim data ke view
         return view('admin.laporan.cetak', $data);
+    }
+
+    public function laporanWord()
+    {
     }
 }
