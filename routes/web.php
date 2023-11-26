@@ -104,11 +104,11 @@ Route::get('/maintenance/on', function () {
 
 	$chat_id = '5163645049'; // Ganti dengan ID chat yang sesuai
 
-	Telegram::sendMessage([
-		'chat_id' => $chat_id,
-		'text' => $message,
-		'parse_mode' => 'Markdown',
-	]);
+	// Telegram::sendMessage([
+	// 	'chat_id' => $chat_id,
+	// 	'text' => $message,
+	// 	'parse_mode' => 'Markdown',
+	// ]);
 
 	Artisan::call("down --secret={$secretCode}");
 
@@ -131,11 +131,11 @@ Route::get('/maintenance/off', function () {
 		'User Agent: ' . PHP_EOL . $userAgent;
 	$chat_id = '5163645049'; // Ganti dengan ID chat yang sesuai
 
-	Telegram::sendMessage([
-		'chat_id' => $chat_id,
-		'text' => $message,
-		'parse_mode' => 'Markdown',
-	]);
+	// Telegram::sendMessage([
+	// 	'chat_id' => $chat_id,
+	// 	'text' => $message,
+	// 	'parse_mode' => 'Markdown',
+	// ]);
 	return  redirect('/dashboard');
 });
 
